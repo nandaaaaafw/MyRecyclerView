@@ -13,7 +13,12 @@ class MainActivity : AppCompatActivity() {
 
     private val list = ArrayList<Hero>()
     private var title = "Mode List"
-
+    private var mode: Int=0
+    companion object{
+        private const val STATE_TITLE = "state_string"
+        private const val STATE_LIST = "state_list"
+        private const val STATE_MODE = "state_mode"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,15 +90,20 @@ class MainActivity : AppCompatActivity() {
     private fun setMode(selectedMode: Int) {
         when (selectedMode) {
             R.id.action_list -> {
+                title ="Mode List"
                 showRecyclerList()
             }
             R.id.action_grid -> {
+                title ="Mode Grid"
                 showRecyclerGrid()
             }
             R.id.action_cardview -> {
+                title ="Mode CardView"
                 showRecyclerCardView()
             }
         }
+        mode = selectedMode
+        setActionBarTitle(title)
     }
 
     private fun setActionBarTitle(title: String?) {
